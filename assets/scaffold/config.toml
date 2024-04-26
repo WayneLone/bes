@@ -1,0 +1,11 @@
+title = "Go by Example"
+description = """
+<a href="https://go.dev/">Go</a> is an open source programming language designed for building simple, fast, and reliable software. 
+Please read the official <a href="https://go.dev/doc/tutorial/getting-started">documentation</a> to learn a bit about Go code, tools packages, and modules.
+"""
+authors = [
+  { name = "Mark McGranaghan", url = "https://markmcgranaghan.com/" },
+  { name = "Eli Bendersky", url = "https://eli.thegreenplace.net/" }
+]
+sourceUrl = "https://github.com/mmcgrana/gobyexample"
+licenseUrl = "https://github.com/mmcgrana/gobyexample#license"

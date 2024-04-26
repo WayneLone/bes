@@ -1,0 +1,9 @@
+{{define "footer"}}
+    <p class="footer">
+      by
+      {{range .Authors}}
+      <a href="{{.Url}}">{{.Name}}</a>
+      {{end}}
+      | <a href="{{.SourceUrl}}">source</a> | <a href="{{.LicenseUrl}}">license</a>
+    </p>
+{{end}}

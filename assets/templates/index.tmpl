@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>{{.Title}}</title>
+    <link rel=stylesheet href="site.css">
+  </head>
+  <body>
+    <div id="intro">
+      <h2><a href="./">Go Generice by Example</a></h2>
+      <p>
+        {{.Description}}
+      </p>
+
+      <ul>
+      {{range .Examples}}
+        <li><a href="{{.ID}}.html">{{.Name}}</a></li>
+      {{end}}
+      </ul>
+{{ template "footer" .ConfigInfo }}
+    </div>
+  </body>
+</html>
