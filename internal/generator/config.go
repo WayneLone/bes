@@ -13,6 +13,8 @@ type ConfigInfo struct {
 	Authors     []Author
 	SourceUrl   string
 	LicenseUrl  string
+	Lexer       string
+	FileSuffix  string
 }
 
 type Author struct {

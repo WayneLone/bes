@@ -65,8 +65,8 @@ func mustGlob(glob string) []string {
 }
 
 func whichLexer(path string) string {
-	if strings.HasSuffix(path, ".go") {
-		return "go"
+	if strings.HasSuffix(path, configInfo.FileSuffix) {
+		return configInfo.Lexer
 	} else if strings.HasSuffix(path, ".sh") {
 		return "console"
 	}
@@ -188,13 +188,13 @@ func parseAndRenderSegs(sourcePath string) ([]*Seg, string) {
 			seg.CodeRendered = chromaFormat(seg.Code, sourcePath)
 
 			// adding the content to the js code for copying to the clipboard
-			if strings.HasSuffix(sourcePath, ".go") {
+			if strings.HasSuffix(sourcePath, configInfo.FileSuffix) {
 				seg.CodeForJs = strings.Trim(seg.Code, "\n") + "\n"
 			}
 		}
 	}
 	// we are only interested in the 'go' code to pass to play.golang.org
-	if lexer != "go" {
+	if lexer != configInfo.Lexer {
 		filecontent = ""
 	}
 	return segs, filecontent
