@@ -228,3 +228,18 @@ body .c1 { color: #808080 }  /* Comment.Single */
   body .go { color: #868686 }  /* Generic.Output */
   body .c1 { color: #868686 }  /* Comment.Single */
 }
+
+/* Add left docs code highlight */
+tr > td.docs > p > code {
+  color: #36464e;
+  line-height: 1.5;
+  word-wrap: break-word;
+  background-color: rgba(27,31,35,.05);
+  border-radius: 3px;
+  box-sizing: border-box;
+  background-color: rgba(27,31,35,.05);
+  border-radius: 3px;
+  font-size: 85%;
+  margin: 0;
+  padding: .2em .4em;
+}
