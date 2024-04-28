@@ -26,9 +26,8 @@ var siteDir = "./public"
 
 func Build(dstDir string, configPath string) {
 	siteDir = dstDir
-	utils.EnsureDir(siteDir)
-
 	parseConfig(configPath)
+	utils.EnsureDir(siteDir)
 
 	utils.CopyFileFromFS(assets.TemplateFS, "templates/site.css", siteDir+"/site.css")
 	utils.CopyFileFromFS(assets.TemplateFS, "templates/site.js", siteDir+"/site.js")
@@ -61,7 +60,10 @@ func readLines(path string) []string {
 func mustGlob(glob string) []string {
 	paths, err := filepath.Glob(glob)
 	utils.Check(err)
-	return paths
+	target := 0
+	return utils.MoveSliceElemTo(paths, target, func(p string) bool {
+		return strings.HasSuffix(p, configInfo.FileSuffix)
+	})
 }
 
 func whichLexer(path string) string {
@@ -144,10 +146,14 @@ func parseSegs(sourcePath string) ([]*Seg, string) {
 			lastSeen = "code"
 		}
 	}
+	cr := false
 	for i, seg := range segs {
 		seg.CodeEmpty = (seg.Code == "")
 		seg.CodeLeading = (i < (len(segs) - 1))
-		seg.CodeRun = strings.Contains(seg.Code, "package main")
+		seg.CodeRun = strings.HasSuffix(sourcePath, configInfo.FileSuffix) && !seg.CodeEmpty && !cr
+		if seg.CodeRun {
+			cr = true
+		}
 	}
 	return segs, strings.Join(source, "\n")
 }

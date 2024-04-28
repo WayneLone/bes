@@ -24,6 +24,11 @@ func ExistsDir(dir string) bool {
 	return fs.IsDir()
 }
 
+func ExistsFile(path string) bool {
+	_, err := os.Stat(path)
+	return !os.IsNotExist(err)
+}
+
 func CopyFile(src, dst string) {
 	dat, err := os.ReadFile(src)
 	Check(err)
